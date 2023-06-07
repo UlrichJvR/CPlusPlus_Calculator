@@ -7,6 +7,10 @@ int main() {
   char operand;
   cout << "Enter a operand: ";
   cin >> operand;
+  if (operand != '+' && operand != '-' && operand != '/' && operand != '*') {
+    cout << "Choose an operand with either (+ , - , * or /)" << endl;
+    return 0;
+  }
   int numbers[2] = {};
   for (int i = 0; i < 2; i++){
     cout << "Enter a Number: " << endl;
@@ -18,8 +22,7 @@ int main() {
 
 void calculatefunc(int numbers[], char operand){
   int answer = 0;
-  bool is_zero = false;
-  bool can_continue = true;
+  bool is_zero_division = false;
   switch (operand) {
     case '+' :
       answer = numbers[0] + numbers[1];
@@ -32,19 +35,17 @@ void calculatefunc(int numbers[], char operand){
       break;
     case '/' :
       if (numbers[1] == 0){
-        is_zero = true;
+        is_zero_division = true;
         break;
       }
       answer = numbers[0] / numbers[1];
       break;
     default:
-      cout << "Choose an operand with either (+ , - , * or /)" << endl;
-      can_continue = false;
       break;
   }
-  if (is_zero) {
+  if (is_zero_division) {
     cout << "Cannot divide by zero" << endl;
-  } else if (can_continue) {
+  } else {
     cout << numbers[0] << " " << operand << " " << numbers[1] << " = " << answer << endl;
   }
 }
