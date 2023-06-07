@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-void calculatefunc(int numbers[], char operand);
+void calculatefunc(double numbers[], char operand);
 
 int main() {
   char operand;
@@ -11,17 +11,21 @@ int main() {
     cout << "Choose an operand with either (+ , - , * or /)" << endl;
     return 0;
   }
-  int numbers[2] = {};
+  double numbers[2] = {};
   for (int i = 0; i < 2; i++){
-    cout << "Enter a Number: " << endl;
+    string another = "a";
+    if (i == 1){
+      another = "another";
+    }
+    cout << "Enter " << another << " Number: " << endl;
     cin >> numbers[i];
   }
   calculatefunc(numbers, operand);
   return 0;
 }
 
-void calculatefunc(int numbers[], char operand){
-  int answer = 0;
+void calculatefunc(double numbers[], char operand){
+  double answer = 0;
   bool is_zero_division = false;
   switch (operand) {
     case '+' :
