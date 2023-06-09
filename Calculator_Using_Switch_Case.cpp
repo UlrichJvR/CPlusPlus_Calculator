@@ -1,48 +1,66 @@
 #include <iostream>
+#include <stdlib.h>
 using namespace std;
 
+// Functions declarations
 void calculatefunc(double numbers[], char operand);
+void startCalculator();
+void restartCalculator();
 
+// variable declarations
+bool doCalculation = true;
+
+// main function
 int main() {
-  char operand;
-  cout << "Enter a operand: ";
-  cin >> operand;
-  if (operand != '+' && operand != '-' && operand != '/' && operand != '*') {
-    cout << "Choose an operand with either (+ , - , * or /)" << endl;
-    return 0;
+  system("Clear"); // user "CLS" for windows
+  cout << "Calculator startup \n\n" << endl;
+  while (doCalculation)
+  {
+    startCalculator();
   }
-  double numbers[2] = {};
+  return 0;
+}
+
+void startCalculator(){
+  char operation;
+  cout << "Enter a mathematical operator: " << endl;
+  cin >> operation;
+  if (operation != '+' && operation != '-' && operation != '/' && operation != '*') {
+    cout << "Choose an operator with either (+ , - , * or /)" << endl;
+    return;
+  }
+  double operands[2] = {};
   for (int i = 0; i < 2; i++){
     string another = "a";
     if (i == 1){
       another = "another";
     }
     cout << "Enter " << another << " Number: " << endl;
-    cin >> numbers[i];
+    cin >> operands[i];
   }
-  calculatefunc(numbers, operand);
-  return 0;
+  calculatefunc(operands, operation);
+  restartCalculator();
 }
 
 void calculatefunc(double numbers[], char operand){
-  double answer = 0;
+  double result = 0;
   bool is_zero_division = false;
   switch (operand) {
     case '+' :
-      answer = numbers[0] + numbers[1];
+      result = numbers[0] + numbers[1];
       break;
     case '-' :
-      answer = numbers[0] - numbers[1];
+      result = numbers[0] - numbers[1];
       break;
     case '*' :
-      answer = numbers[0] * numbers[1];
+      result = numbers[0] * numbers[1];
       break;
     case '/' :
       if (numbers[1] == 0){
         is_zero_division = true;
         break;
       }
-      answer = numbers[0] / numbers[1];
+      result = numbers[0] / numbers[1];
       break;
     default:
       break;
@@ -50,6 +68,23 @@ void calculatefunc(double numbers[], char operand){
   if (is_zero_division) {
     cout << "Cannot divide by zero" << endl;
   } else {
-    cout << numbers[0] << " " << operand << " " << numbers[1] << " = " << answer << endl;
+    cout << "----------------------" << endl;
+    cout << numbers[0] << " " << operand << " " << numbers[1] << " = " << result << endl;
+    cout << "----------------------" << endl;
+  }
+}
+
+void restartCalculator(){
+  cout << "Do you want to perform another calculation? (y/n)" << endl;
+
+  char choice;
+  cin >> choice;
+
+  if (choice != 'y' && choice != 'n'){
+    cout << choice << " is not a recognized command" << endl;
+  }
+
+  if (choice == 'n'){
+    doCalculation = false;
   }
 }
