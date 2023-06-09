@@ -12,7 +12,7 @@ bool doCalculation = true;
 
 // main function
 int main() {
-  system("Clear"); // user "CLS" for windows
+  system("Clear"); // use "CLS" for windows
   cout << "Calculator startup \n\n" << endl;
   while (doCalculation)
   {
@@ -82,6 +82,7 @@ void restartCalculator(){
 
   if (choice != 'y' && choice != 'n'){
     cout << choice << " is not a recognized command" << endl;
+    restartCalculator();
   }
 
   if (choice == 'n'){
