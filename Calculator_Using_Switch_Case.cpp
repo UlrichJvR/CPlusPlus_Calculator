@@ -21,6 +21,7 @@ int main() {
   return 0;
 }
 
+// methods
 void startCalculator(){
   char operation;
   cout << "Enter a mathematical operator: " << endl;
